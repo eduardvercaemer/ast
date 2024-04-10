@@ -10,8 +10,8 @@
 
 set -x
 # comment this line if not running on sls cluster
-. /data/sls/scratch/share-201907/slstoolchainrc
-source ../../venvast/bin/activate
+#. /data/sls/scratch/share-201907/slstoolchainrc
+source ../../venv/bin/activate
 export TORCH_HOME=../../pretrained_models
 
 model=ast
