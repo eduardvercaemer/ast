@@ -11,6 +11,7 @@ spec_directory = './data/spec'
 dataset_directory = './data/ASVspoof2021_DF_eval'
 wav_directory = dataset_directory + '/wav'
 metadata_path = './data/keys/DF/CM/trial_metadata.txt'
+labels_path = f'{spec_directory}/labels.csv'
 n_folds = 5
 
 if __name__ == "__main__":
@@ -55,3 +56,8 @@ if __name__ == "__main__":
 
         with open(f'{spec_directory}/asvspoof2021df_eval_data_{fold + 1}.json', 'w') as f:
             json.dump({'data': eval_items}, f, indent=1)
+
+    with open(labels_path, 'w') as f:
+        f.write('index,mid,display_name\n')
+        f.write('0,/m/0,"bonafide"\n')
+        f.write('1,/m/1,"spoof"\n')
