@@ -96,4 +96,4 @@ do
     --noise ${noise}
 done
 
-python ./get_esc_result.py --exp_path ${base_exp_dir}
+python ./get_result.py --exp_path "${base_exp_dir}"
