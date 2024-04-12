@@ -6,6 +6,12 @@
 # from dataset
 
 set -x
+
 mkdir -p ./data/ASVspoof2021_DF_eval/wav
-find ./data/ASVspoof2021_DF_eval/flac -type f -name '*.flac' \
-  -exec sh -c 'sox "$0" -r 16000 "./data/ASVspoof2021_DF_eval/wav/$(basename ${0%.flac}).wav"' {} \;
+
+find ./data/ASVspoof2021_DF_eval/flac \
+  -type f \
+  -print0 | \
+parallel -0 -j+0 \
+  'output="./data/ASVspoof2021_DF_eval/wav/{/.}.wav"; [ ! -e "$output" ] && sox {} -r 16000 "$output"; echo 1' 2>&1 | \
+pv -l -s $(./data/ASVspoof2021_DF_eval/flac -type f | wc -l) > /dev/null
